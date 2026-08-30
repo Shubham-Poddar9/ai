@@ -5,12 +5,12 @@ def stt():
     r=sr.Recognizer()
 
     with sr.Microphone() as source:
-        print("speak in english ")
+        print("speak in hindi ")
         audio=r.listen(source)
 
 
     try:
-        text=r.recognize_google(audio,language="en-US")
+        text=r.recognize_google(audio,language="hi")
         print("you said: ",text)
         return text
 
@@ -21,7 +21,7 @@ def stt():
 
 def tt(text):
     translator = Translator()
-    result=translator.translate(text,src="en",dest="zh-cn")
+    result=translator.translate(text,src="hi",dest="ne")
     print("china",result.text)
 
 text=stt()
