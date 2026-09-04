@@ -1,0 +1,39 @@
+import pyttsx3
+import datetime
+
+def speak(text):
+    engine=pyttsx3.init()
+    engine.setProperty("rate",170)
+    engine.setProperty("volume",1.0)
+    engine.say(text)
+    engine.runAndWait()
+    engine.stop()
+def process(query):
+    query=query.lower()
+    time=datetime.datetime.now().astimezone()
+
+    tzone=time.tzname()
+    if query=="time":
+        t=time.strftime("%H:%M")
+        return f"the current time is {t},{tzone}"
+    elif(query=="date"):
+        date=time.strftime("%d:%m:%y")
+        return f"the date is {date}"
+
+    else:
+        return"sorry not able to understand you"
+
+def main():
+    print('welcome to your offline assitant program')
+    while True:
+        inp=input("enter your choice (time/data):")
+
+        if inp.lower()=="exit":
+            print("assistant stoped")
+            break
+        else:
+            choice=process(inp)
+            print(choice)
+            speak(choice)
+
+main()
